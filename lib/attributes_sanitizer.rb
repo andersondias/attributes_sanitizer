@@ -1,6 +1,7 @@
 require "attributes_sanitizer/railtie"
 require "attributes_sanitizer/sanitizer_proc"
 require "attributes_sanitizer/concern"
+require "attributes_sanitizer/overrider"
 
 #
 # Attributes sanitizer for Rails
@@ -43,43 +44,6 @@ module AttributesSanitizer
 
   def self.define_sanitizer(sanitizer_name, &block)
     self.sanitizers[sanitizer_name.to_sym] = block
-  end
-
-  def self.setup_initial_getter_and_setter(klass, attribute)
-    getter = attribute.to_sym
-    setter = :"#{attribute}="
-
-    unless klass.method_defined?(getter)
-      klass.define_method getter do
-        super()
-      end
-    end
-
-    unless klass.method_defined?(setter)
-      klass.define_method setter do |new_value|
-        super(new_value)
-      end
-    end
-
-    [getter, setter]
-  end
-
-  def self.override_attribute_with_sanitizer(klass, attribute, sanitizer)
-    getter, setter = setup_initial_getter_and_setter(klass, attribute)
-
-    original_getter_alias = "#{attribute}_before_#{sanitizer.id}"
-    klass.alias_method original_getter_alias, getter
-
-    original_setter_alias = "#{attribute}_before_#{sanitizer.id}="
-    klass.alias_method original_setter_alias, setter
-
-    klass.define_method getter do
-      sanitizer.call(send(original_getter_alias))
-    end
-
-    klass.define_method setter do |new_value|
-      send(original_setter_alias, sanitizer.call(new_value))
-    end
   end
 end
 

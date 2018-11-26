@@ -15,7 +15,7 @@ module AttributesSanitizer::Concern
         sanitizer = AttributesSanitizer::SanitizerProc.new(sanitizer)
 
         attributes.each do |attribute|
-          AttributesSanitizer.override_attribute_with_sanitizer(self, attribute, sanitizer)
+          AttributesSanitizer::Overrider.new(self, attribute, sanitizer).redefine_attribute
         end
       end
     end

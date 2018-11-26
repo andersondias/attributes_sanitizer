@@ -6,4 +6,8 @@ class AttributesSanitizer::Test < ActiveSupport::TestCase
     assert_equal 'title xxx', product.title
     assert_equal 'description 123 432', product.description
   end
+
+  test "does not raise error when declarating attribute twice" do
+    Product.sanitize_attribute :title, with: [:strip_emojis, :strip_emojis]
+  end
 end
