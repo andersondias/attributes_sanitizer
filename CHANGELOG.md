@@ -1,3 +1,10 @@
+# 0.1.1
+
+Fix some bugs:
+
+* Predefined sanitizers are converting `nil` values into a blank string (`''`)
+* Fix `Stack too deep level` when duplicated `sanitize_attributes`, like `sanitize_attributes :title, with: [:strip_tags, :strip_emojis]`
+
 # 0.1.0
 
 Initial version.
