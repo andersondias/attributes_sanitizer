@@ -16,6 +16,12 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
+  s.metadata = {
+    "changelog_uri"     => "https://github.com/andersondias/attributes_sanitizer/blob/master/CHANGELOG.md",
+    "homepage_uri"      => "https://github.com/andersondias/attributes_sanitizer",
+    "source_code_uri"   => "https://github.com/andersondias/attributes_sanitizer"
+  }
+
   s.add_dependency "rails", "~> 5"
 
   s.add_development_dependency "sqlite3"
