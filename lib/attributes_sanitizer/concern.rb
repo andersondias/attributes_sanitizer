@@ -12,7 +12,7 @@ module AttributesSanitizer::Concern
       raise ArgumentError, "You need to supply at least one sanitize method" if sanitizers.empty?
 
       sanitizers.each do |sanitizer|
-        sanitizer = SanitizerProc.new(sanitizer)
+        sanitizer = AttributesSanitizer::SanitizerProc.new(sanitizer)
 
         attributes.each do |attribute|
           AttributesSanitizer.override_attribute_with_sanitizer(self, attribute, sanitizer)
