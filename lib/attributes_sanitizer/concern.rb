@@ -8,24 +8,15 @@ module AttributesSanitizer::Concern
     def sanitize_attributes(*attributes)
       self.attributes_sanitize_map ||= {}
 
-      defaults = attributes.extract_options!.dup
-      sanitizers = Array(defaults[:with])
-
-      raise ArgumentError, "You need to supply at least one attribute" if attributes.empty?
-      raise ArgumentError, "You need to supply at least one sanitize method" if sanitizers.empty?
-
-      sanitizers.each do |sanitizer|
+      fetch_sanitizers_from_options(attributes).each do |sanitizer|
         sanitizer = AttributesSanitizer::SanitizerProc.new(sanitizer)
 
         attributes.each do |attribute|
-          self.attributes_sanitize_map[attribute] ||= []
-          unless self.attributes_sanitize_map[attribute].include?(sanitizer)
-            self.attributes_sanitize_map[attribute] << sanitizer
-          end
+          add_sanitizer_to_attribute(attribute, sanitizer)
         end
-
-        AttributesSanitizer::Overrider.new(self).override_getters_and_setters
       end
+
+      AttributesSanitizer::Overrider.new(self).override_getters_and_setters
     end
     alias_method :sanitize_attribute, :sanitize_attributes
 
@@ -36,5 +27,24 @@ module AttributesSanitizer::Concern
         sanitizer.call(value)
       end
     end
+
+    private
+
+      def fetch_sanitizers_from_options(attributes)
+        defaults = attributes.extract_options!.dup
+        sanitizers = Array(defaults[:with])
+
+        raise ArgumentError, "You need to supply at least one attribute" if attributes.empty?
+        raise ArgumentError, "You need to supply at least one sanitize method" if sanitizers.empty?
+
+        sanitizers
+      end
+
+      def add_sanitizer_to_attribute(attribute, sanitizer)
+        self.attributes_sanitize_map[attribute] ||= []
+        unless self.attributes_sanitize_map[attribute].include?(sanitizer)
+          self.attributes_sanitize_map[attribute] << sanitizer
+        end
+      end
   end
 end
