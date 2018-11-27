@@ -1,3 +1,7 @@
+# 0.1.3
+
+- Do not accept AttributesSanitizer.define_sanitizer without a block
+
 # 0.1.2
 
 - Adding railtie to remove the necessity of including the concern by hand on every model
