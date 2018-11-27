@@ -1,5 +1,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/29a55c3bd2dd9e5ed117/maintainability)](https://codeclimate.com/github/andersondias/attributes_sanitizer/maintainability)
 
+[![Test Coverage](https://api.codeclimate.com/v1/badges/29a55c3bd2dd9e5ed117/test_coverage)](https://codeclimate.com/github/andersondias/attributes_sanitizer/test_coverage)
+
 # AttributesSanitizer
 
 A simple way to append sanitizers to attributes on Rails.
