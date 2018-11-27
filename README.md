@@ -9,8 +9,6 @@ A simple way to append sanitizers to attributes on Rails.
 
 ```ruby
 class Product < ApplicationRecord
-  extend AttributesSanitizer::Concern
-
   sanitize_attribute :title, with: -> (value) {
     value.gsub(/[1-9]/, 'X')
   }

@@ -1,3 +1,8 @@
+# 0.1.2
+
+- Adding railtie to remove the necessity of including the concern by hand on every model
+- Fixing shared objects issue
+
 # 0.1.1
 
 First stable version.
