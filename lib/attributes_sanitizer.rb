@@ -2,6 +2,7 @@ require "attributes_sanitizer/railtie"
 require "attributes_sanitizer/sanitizer_proc"
 require "attributes_sanitizer/concern"
 require "attributes_sanitizer/overrider"
+require "attributes_sanitizer/predefined"
 
 #
 # Attributes sanitizer for Rails
@@ -45,6 +46,6 @@ module AttributesSanitizer
   def self.define_sanitizer(sanitizer_name, &block)
     self.sanitizers[sanitizer_name.to_sym] = block
   end
-end
 
-require "attributes_sanitizer/predefined"
+  include Predefined
+end
