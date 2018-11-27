@@ -3,6 +3,10 @@ module AttributesSanitizer
     extend ActiveSupport::Concern
 
     included do
+      AttributesSanitizer.define_sanitizer :stringify do |value|
+        value.to_s
+      end
+
       AttributesSanitizer.define_sanitizer :downcase do |value|
         value.downcase
       end
@@ -25,4 +29,3 @@ module AttributesSanitizer
     end
   end
 end
-

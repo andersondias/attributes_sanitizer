@@ -20,6 +20,7 @@ end
 ```
 
 It comes with pre-defined sanitizers:
+- `:stringify` which perform a `to_s` into the value, to be sanitized as a string. Can be used before other sanitizer, that depends to the value be a string
 - `:downcase` which downcases a given attribute string
 - `:upcase` which upcases a given attribute string
 - `:strip_tags` which removes any tags from the given string based on Rails sanitize helper.
