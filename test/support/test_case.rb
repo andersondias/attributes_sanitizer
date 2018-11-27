@@ -11,7 +11,7 @@ module AttributesSanitizer
 
     setup do
       Product.clear_sanitized_attributes(:title, :description)
-      Product.attributes_sanitize_map&.clear
+      Post.clear_sanitized_attributes(:title)
     end
   end
 end

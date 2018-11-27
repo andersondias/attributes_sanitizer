@@ -120,4 +120,11 @@ class AttributesSanitizer::Test < AttributesSanitizer::TestCase
     assert_nil product.title
     assert_nil product.description
   end
+
+  test "setup is not shared between models" do
+    Product.sanitize_attribute :title, with: :upcase
+    refute_equal Product.attributes_sanitize_map.object_id, Post.attributes_sanitize_map.object_id
+    assert_equal [:title], Product.attributes_sanitize_map.keys
+    assert_equal [], Post.attributes_sanitize_map.keys
+  end
 end

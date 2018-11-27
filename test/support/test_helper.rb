@@ -10,6 +10,7 @@ module AttributesSanitizer
             undef_method(:"#{attribute}=")
           end
         end
+        self.attributes_sanitize_map.clear
       end
     end
   end

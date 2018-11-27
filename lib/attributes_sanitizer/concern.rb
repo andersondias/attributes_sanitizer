@@ -1,13 +1,12 @@
 module AttributesSanitizer::Concern
-  def self.extended(klass)
-    klass.cattr_accessor :attributes_sanitize_map
-    klass.extend ClassMethods
-  end
+  extend ActiveSupport::Concern
 
-  module ClassMethods
+  class_methods do
+    def attributes_sanitize_map
+      @attributes_sanitize_map ||= {}
+    end
+
     def sanitize_attributes(*attributes)
-      self.attributes_sanitize_map ||= {}
-
       fetch_sanitizers_from_options(attributes).each do |sanitizer|
         sanitizer = AttributesSanitizer::SanitizerProc.new(sanitizer)
 
@@ -21,7 +20,7 @@ module AttributesSanitizer::Concern
     alias_method :sanitize_attribute, :sanitize_attributes
 
     def execute_sanitizers_for(attribute, value)
-      return value if self.attributes_sanitize_map.blank? || value.nil?
+      return value if self.attributes_sanitize_map[attribute].blank? || value.nil?
 
       self.attributes_sanitize_map[attribute].reduce(value) do |value, sanitizer|
         sanitizer.call(value)
