@@ -126,24 +126,35 @@ class AttributesSanitizer::Test < AttributesSanitizer::TestCase
     product = Product.new(title: 'Title <b>123</b> 😀  ')
     assert_sanitized_attribute product, :title, 'title <b>123</b> 😀  '
   end
+
   test "pre-defined sanitizer upcase" do
     Product.sanitize_attribute :title, with: :upcase
     product = Product.new(title: 'Title <b>123</b> 😀  ')
     assert_sanitized_attribute product, :title, 'TITLE <B>123</B> 😀  '
   end
+
   test "pre-defined sanitizer strip_tags" do
     Product.sanitize_attribute :title, with: :strip_tags
     product = Product.new(title: 'Title <b>123</b> 😀  ')
     assert_sanitized_attribute product, :title, 'Title 123 😀  '
   end
+
   test "pre-defined sanitizer strip_emojis" do
     Product.sanitize_attribute :title, with: :strip_emojis
     product = Product.new(title: 'Title <b>123</b> 😀  ')
     assert_sanitized_attribute product, :title, 'Title <b>123</b>   '
   end
+
   test "pre-defined sanitizer strip_spaces" do
     Product.sanitize_attribute :title, with: :strip_spaces
     product = Product.new(title: 'Title <b>123</b> 😀  ')
     assert_sanitized_attribute product, :title, 'Title <b>123</b> 😀'
+  end
+
+  test "pre-defined strip_tags with number could be converted to string" do
+    Product.sanitize_attribute :title, with: [:stringify, :strip_tags]
+    product = Product.new(title: 123)
+
+    assert_sanitized_attribute product, :title, '123'
   end
 end

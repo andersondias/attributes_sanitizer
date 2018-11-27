@@ -1,3 +1,11 @@
+# 0.1.1
+
+First stable version.
+
+- Fix bug with duplicated sanitizer name on fields declaration
+- Add possibility to stack the validations in order of decalration. Example: `sanitize_attributes :title, with: [:stringify, :strip_tags, :strip_spaces]` -> `strinfigy` will be the first executed, and `strip_spaces` the last.
+- Added `:stringify` as default sanitizer, to perform a `.to_s` on attribute
+
 # 0.1.0
 
 Initial version.
