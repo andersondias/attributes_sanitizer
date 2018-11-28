@@ -14,7 +14,7 @@ module AttributesSanitizer
 
   def self.find(sanitizer_name)
     sanitizer = @sanitizers && @sanitizers[sanitizer_name.to_sym]
-    raise ArgumentError, "No sanitizer defined for #{sanitizer}" if sanitizer.nil?
+    raise ArgumentError, "No sanitizer defined for #{sanitizer_name}" if sanitizer.nil?
     sanitizer
   end
 
