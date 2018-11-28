@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    attributes_sanitizer (0.1.3)
+    attributes_sanitizer (0.1.4)
       rails (~> 5)
 
 GEM

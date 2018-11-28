@@ -1,6 +1,11 @@
+# 0.1.4
+
+- Reducing memory footprint by adding `frozen_string_literal: true` magic comment
+- Minor internal improvements to avoid possible misusage of the `AttributesSanitizer.sanitizers`, if you want to find a defined sanitizer you must to use: `AttributesSanitizer.find(:sanitizer_name)`.
+
 # 0.1.3
 
-- Do not accept AttributesSanitizer.define_sanitizer without a block
+- Do not accept `AttributesSanitizer.define_sanitizer` without a block
 
 # 0.1.2
 

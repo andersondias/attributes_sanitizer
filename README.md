@@ -39,7 +39,7 @@ end
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'attributes_sanitizer', git: 'https://github.com/andersondias/attributes_sanitizer.git'
+gem 'attributes_sanitizer'
 ```
 
 And then execute:
