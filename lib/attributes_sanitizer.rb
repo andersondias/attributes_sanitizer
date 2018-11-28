@@ -5,8 +5,6 @@ require "attributes_sanitizer/overrider"
 require "attributes_sanitizer/predefined"
 
 module AttributesSanitizer
-  EMOJI_REGEX = /[^\u0000-\u00FF]/
-
   def self.define_sanitizer(sanitizer_name, &block)
     @sanitizers ||= {}
     raise ArgumentError, 'sanitizer needs a block' unless block_given?
@@ -14,7 +12,9 @@ module AttributesSanitizer
   end
 
   def self.find(sanitizer_name)
-    @sanitizers && @sanitizers[sanitizer_name.to_sym]
+    sanitizer = @sanitizers && @sanitizers[sanitizer_name.to_sym]
+    raise ArgumentError, "No sanitizer defined for #{sanitizer}" if sanitizer.nil?
+    sanitizer
   end
 
   include Predefined
