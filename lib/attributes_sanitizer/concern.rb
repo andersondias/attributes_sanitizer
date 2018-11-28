@@ -30,8 +30,8 @@ module AttributesSanitizer::Concern
     private
 
       def fetch_sanitizers_from_options(attributes)
-        defaults = attributes.extract_options!.dup
-        sanitizers = Array(defaults[:with])
+        options = attributes.extract_options!.dup
+        sanitizers = Array(options[:with])
 
         raise ArgumentError, "You need to supply at least one attribute" if attributes.empty?
         raise ArgumentError, "You need to supply at least one sanitize method" if sanitizers.empty?
