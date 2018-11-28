@@ -11,9 +11,7 @@ module AttributesSanitizer
         @proc = sanitizer
         @id = sanitizer.object_id
       else
-        @proc = AttributesSanitizer.sanitizers[sanitizer]
-        raise ArgumentError, "No attribute sanitizer defined for #{sanitizer}" if @proc.nil?
-
+        @proc = AttributesSanitizer.find(sanitizer)
         @id = sanitizer
       end
     end
