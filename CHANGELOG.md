@@ -1,3 +1,9 @@
+# 0.1.5
+
+- Now it's possible to use and setup bundles os sanitizers which makes it easier to reuse a list of sanitizers.
+- Comes with the `no_tags_emojis_or_extra_spaces` bundle
+- Fixing argument error message when no sanitizer can be found
+
 # 0.1.4
 
 - Reducing memory footprint by adding `frozen_string_literal: true` magic comment
