@@ -38,4 +38,13 @@ class AttributesSanitizer::Predefined::Test < AttributesSanitizer::TestCase
 
     assert_sanitized_attribute product, :title, '123'
   end
+
+  test "has predefined bundles" do
+    Product.sanitize_attribute :title, with: :no_tags_emojis_or_extra_spaces
+    Product.sanitize_attribute :description, with: [:no_tags_emojis_or_extra_spaces, :downcase]
+
+    product = Product.new(title: 'Title <b>123</b> 😀  ', description: '  Text <b>123 😀</b>')
+    assert_sanitized_attribute product, :title, 'Title 123'
+    assert_sanitized_attribute product, :description, 'text 123'
+  end
 end

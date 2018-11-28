@@ -35,6 +35,24 @@ AttributesSanitizer.define_sanitizer :reverse do |value|
 end
 ```
 
+It also comes with predefined bundles:
+```ruby
+class Product < ApplicationRecord
+  sanitize_attribute :title, with: -> (value) {
+    value.gsub(/[1-9]/, 'X')
+  }
+
+  sanitize_attributes :title, :description, with: :no_tags_emojis_or_extra_spaces
+  # same as: `with: %i(stringify strip_tags strip_emojis strip_spaces)
+end
+```
+
+And, finally, you are able to define your own bundles:
+```ruby
+# config/initializers/attribute_sanitizers.rb
+AttributesSanitizer.define_bundle(:my_bundle, %i(downcase strip_spaces))
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 

@@ -30,5 +30,7 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
 end
 
 require "support/test_helper"
+require "support/active_record_test_helper"
 require "support/test_case"
-ApplicationRecord.include AttributesSanitizer::TestHelper
+AttributesSanitizer.include AttributesSanitizer::TestHelper
+ApplicationRecord.include AttributesSanitizer::ActiveRecordTestHelper

@@ -1,11 +1,15 @@
 # frozen_string_literal: true
 module AttributesSanitizer
   module Predefined
-    extend ActiveSupport::Concern
-
     EMOJI_REGEX = /[^\u0000-\u00FF]/
 
-    included do
+    def setup_predefined_bundles
+      define_bundle(:predefined, @sanitizers.keys)
+      define_bundle(:no_tags_emojis_or_extra_spaces, %i(stringify strip_tags strip_emojis strip_spaces))
+      @predefined_bundles = @bundles.keys
+    end
+
+    def self.extended(_)
       AttributesSanitizer.define_sanitizer :stringify do |value|
         value.to_s
       end
@@ -29,6 +33,8 @@ module AttributesSanitizer
       AttributesSanitizer.define_sanitizer :strip_spaces do |value|
         value.strip
       end
+
+      AttributesSanitizer.setup_predefined_bundles
     end
   end
 end

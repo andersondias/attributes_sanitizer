@@ -3,14 +3,14 @@ module AttributesSanitizer
     extend ActiveSupport::Concern
 
     class_methods do
-      def clear_sanitized_attributes(*attributes)
-        attributes.each do |attribute|
-          if method_defined?(attribute)
-            undef_method(attribute)
-            undef_method(:"#{attribute}=")
-          end
+      def reset_to_predefined
+        predefined_sanitizers = @bundles[:predefined]
+        @sanitizers.keep_if do |sanitizer|
+          predefined_sanitizers.include?(sanitizer)
         end
-        self.attributes_sanitize_map.clear
+        @bundles.keep_if do |key, _|
+          @predefined_bundles.include?(key)
+        end
       end
     end
   end
