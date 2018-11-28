@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module AttributesSanitizer::Concern
   extend ActiveSupport::Concern
 

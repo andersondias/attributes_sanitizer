@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "attributes_sanitizer/railtie"
 require "attributes_sanitizer/sanitizer_proc"
 require "attributes_sanitizer/concern"

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module AttributesSanitizer
   class Railtie < ::Rails::Railtie
     initializer 'attributes_sanitizer.insert_into_active_record' do
