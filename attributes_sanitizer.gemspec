@@ -22,7 +22,8 @@ Gem::Specification.new do |s|
     "source_code_uri"   => "https://github.com/andersondias/attributes_sanitizer"
   }
 
-  s.add_dependency "rails", "~> 5"
+  s.add_dependency "rails", "> 5", "< 7"
 
+  s.add_development_dependency "bootsnap"
   s.add_development_dependency "sqlite3"
 end
