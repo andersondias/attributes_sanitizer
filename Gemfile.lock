@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     attributes_sanitizer (0.1.5)
-      rails (~> 5)
+      rails (> 5, < 7)
 
 GEM
   remote: https://rubygems.org/
