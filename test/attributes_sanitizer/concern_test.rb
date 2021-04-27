@@ -81,7 +81,7 @@ class AttributesSanitizer::Concern::Test < AttributesSanitizer::TestCase
     product = Product.create!
     assert_nil product.title
 
-    product.update_attributes title: 'title'
+    product.update title: 'title'
     assert_sanitized_attribute product, :title, 'TITLE'
 
     product.update_attribute :title, 'titlee'
