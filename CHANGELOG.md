@@ -1,3 +1,8 @@
+# 0.1.6
+
+- Adding support for Rails 6
+- Do not support Rails 7 (edge) until it is released and the gem is properly tested against it
+
 # 0.1.5
 
 - Now it's possible to use and setup bundles os sanitizers which makes it easier to reuse a list of sanitizers.
