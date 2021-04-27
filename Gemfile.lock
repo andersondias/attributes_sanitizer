@@ -156,7 +156,7 @@ PLATFORMS
 
 DEPENDENCIES
   attributes_sanitizer!
-  bootsnap
+  bootsnap (~> 1.7)
   simplecov
   simplecov-console
   sqlite3 (~> 1.4)
